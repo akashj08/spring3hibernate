@@ -1,0 +1,60 @@
+node ('master'){
+    //properties([parameters([string(defaultValue: 'master', name: 'BRANCH')])])
+
+    env.MAVEN_HOME = "${tool 'Maven-3.6'}"
+	env.PATH="${env.MAVEN_HOME}/bin:${env.PATH}"
+	
+	def code_repo = "git@github.com:akashj08/spring3hibernate.git"
+    def gitCredentials= "133a87a4-ea9e-4e6a-91cc-4f27ea8bf6fd"
+    def BRANCH="master"
+	
+	stage("Initialize") 
+	{ sh ''' echo "PATH = ${PATH}" '''
+	    sh ' mvn -version'}
+	
+
+
+    stage('Checkout SCM') {
+  
+        checkout([$class: 'GitSCM', branches: [[name: "${BRANCH}"]], doGenerateSubmoduleConfigurations: false, userRemoteConfigs: [[credentialsId: "${gitCredentials}",url: "${code_repo}"]]])       
+        
+        }
+        
+    stage('Compile')
+    {
+      sh  """ mvn clean install -DbuildNumber=${env.BUILD_NUMBER}  """
+        
+    }
+
+	
+	stage('Unit Testing'){
+	   sh 'mvn test'
+	 // sh 'mvn verify -Dunit-tests.skip=true'
+	}
+	
+	stage('Genarating Artifact')
+    {
+      sh  """ mvn package -DbuildNumber=${env.BUILD_NUMBER}   """
+        
+    }
+	
+	stage('Uploading Artifact to S3'){
+	   sh """ mvn deploy  -DbuildNumber=${env.BUILD_NUMBER}  """
+	 // sh 'mvn verify -Dunit-tests.skip=true'
+	}
+	
+	stage('Deploying'){
+	   sh """ ansible-playbook warDeploy.yml -i host -e "warNameFilePath=${WORKSPACE}/target/Spring3HibernateApp-${env.BUILD_NUMBER}.war" """
+	 // sh 'mvn verify -Dunit-tests.skip=true'
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
