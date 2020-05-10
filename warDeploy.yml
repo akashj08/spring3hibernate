@@ -2,7 +2,7 @@
 - hosts: tomcatServer
   become: yes
   vars:
-  - warLocalPath: {{ warNameFilePath }}
+  - warLocalPath: "{{ warNameFilePath }}"
   - warRemotePath: /opt/apache-tomcat-9.0.16/webapps
 
   tasks:
