@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Spring3HibernateApp</groupId>
 	<artifactId>Spring3HibernateApp</artifactId>
+
 	<packaging>war</packaging>
 
 	<scm>
@@ -22,7 +23,7 @@
   <repository>
     <id>artifact-repo-test</id>
     <url>s3://artifact-repo-test/release</url>
-  </repository>
+  </repo sitory>
 	
  </distributionManagement>
 	<reporting>
@@ -126,7 +127,8 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
 				<configuration>
-					<warName>Spring3HibernateApp</warName>
+					<warName>${project.artifactId}-${buildNumber}</warName>
+					
 				</configuration>
 			</plugin>
 			<plugin>
