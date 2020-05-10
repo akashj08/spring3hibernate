@@ -14,16 +14,15 @@
 
 	 <distributionManagement>
    <!-- use the following if you're not using a snapshot version. -->
-   <repository>
-     <id>central</id>
-     <name>central</name>
-     <url>http://192.168.0.37:8081/artifactory/ext-release-local</url>
-   </repository>
-	<snapshotRepository>
-          <id>snapshots</id>
-          <name>libs-snapshot-local</name>
-          <url>http://192.168.0.37:8081/artifactory/ext-snapshot-local</url>
-        </snapshotRepository>
+  <snapshotRepository>
+    <id>artifact-repo-test</id>
+    <url>s3://artifact-repo-test/snapshot</url>
+  </snapshotRepository>
+
+  <repository>
+    <id>artifact-repo-test</id>
+    <url>s3://artifact-repo-test/release</url>
+  </repository>
 	
  </distributionManagement>
 	<reporting>
@@ -46,6 +45,16 @@
 	</reporting>
 
 	<build>
+
+
+	<extensions>
+    <extension>
+      <groupId>com.github.platform-team</groupId>
+      <artifactId>aws-maven</artifactId>
+      <version>6.0.0</version>
+    </extension>
+  </extensions>
+
 		<!-- <sourceDirectory>src</sourceDirectory> <resources> <resource> <directory>src</directory> 
 			<excludes> <exclude>**/*.java</exclude> </excludes> </resource> </resources> -->
 		<plugins>
