@@ -3,7 +3,7 @@
   become: yes
   vars:
   - warLocalPath: "{{ warNameFilePath }}"
-  - warRemotePath: /opt/apache-tomcat-9.0.16/webapps/
+  - warRemotePath: /opt/apache-tomcat-9.0.16/webapps
 
   tasks:
   - name: Download WAR to server
