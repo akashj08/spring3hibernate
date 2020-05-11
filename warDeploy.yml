@@ -7,7 +7,7 @@
 
   tasks:
   - name: deleting the old SpringApp.war file
-    file: path={{ warRemotePath }}/SprintApp/SpringApp.war state=absent
+    file: path={{ warRemotePath }}/SpringApp.war state=absent
 
   - name: Clear Old file from the Spring APP folder before deployment
     file: path={{ warRemotePath }}/SprintApp state=absent 
@@ -17,8 +17,7 @@
     notify:
         - Restart tomcat
 
-  - name: Delete remote war file
-    file: path={{ warRemotePath }}/SpringApp.war state=absent
+ 
 
   handlers:
     - name: Restart tomcat
