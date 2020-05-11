@@ -1,0 +1,4 @@
+ENVIRONMENT_NAME: QA
+BRANCH: master
+SERVICE_NAME: opstree-service
+SLACK_CHANNEL: test-alert
