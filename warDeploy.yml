@@ -7,14 +7,13 @@
 
   tasks:
   - name: Download WAR to server
-    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/SprintApp.war
+    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/
   
   - name: Clear Old file from the Spring APP folder before deployment
     file: path={{ warRemotePath }}/SprintApp/* state=absent  
 
   - name: Unzip WAR file
     unarchive: src={{ warRemotePath }}/SpringApp.war dest=/opt/apache-tomcat-9.0.16/webapps/SprintApp copy=no mode=0755 owner=tomcat group=tomcat
-    remote_src: yes
     notify:
         - Restart tomcat
 
