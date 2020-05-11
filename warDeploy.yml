@@ -16,7 +16,7 @@
     file: path={{ warRemotePath }}/SprintApp/* state=absent  
 
   - name: Unzip WAR file
-    unarchive: src={{ warRemotePath }}/SpringApp.war dest=/opt/apache-tomcat-9.0.16/webapps/SprintApp/ remote_src: yes mode=0755 owner=tomcat group=tomcat
+    unarchive: src={{ warRemotePath }}/SpringApp.war dest=/opt/apache-tomcat-9.0.16/webapps/SprintApp/  remote_src=yes mode=0755 owner=tomcat group=tomcat
     notify:
         - Restart tomcat
 
