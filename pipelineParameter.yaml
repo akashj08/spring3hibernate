@@ -1,4 +1,5 @@
 ENVIRONMENT_NAME: QA
 BRANCH: master
-SERVICE_NAME: opstree-service
+SERVICE_NAME: Spring-App
 SLACK_CHANNEL: test-alert
+MAVEN_TOOL: 
