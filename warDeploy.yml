@@ -7,7 +7,7 @@
 
   tasks:
   - name: Download WAR to server
-    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/
+    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/SpringApp.war
   
   - name: Clear Old file from the Spring APP folder before deployment
     file: path={{ warRemotePath }}/SprintApp/* state=absent  
