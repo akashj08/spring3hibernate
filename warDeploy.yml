@@ -6,6 +6,9 @@
   - warRemotePath: /opt/apache-tomcat-9.0.16/webapps
 
   tasks:
+  - name: deleting the old SpringApp.war file
+    file: path={{ warRemotePath }}/SprintApp/SpringApp.war state=absent
+
   - name: Download WAR to server
     synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/SpringApp.war
   
