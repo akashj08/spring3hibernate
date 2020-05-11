@@ -13,7 +13,7 @@
     file: path={{ warRemotePath }}/SprintApp state=absent 
 
   - name: Download WAR to server
-    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/SpringApp.war
+    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/SpringApp.war mode=0755 owner=tomcat group=tomcat
     notify:
         - Restart tomcat
 
