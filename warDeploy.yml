@@ -1,6 +1,5 @@
 ---
 - hosts: tomcatServer
-  strategy: serial
   become: yes
   vars:
   - warLocalPath: "{{ warNameFilePath }}"
