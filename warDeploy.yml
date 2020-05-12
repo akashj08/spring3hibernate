@@ -1,19 +1,20 @@
 ---
 - hosts: tomcatServer
+  
   become: yes
   vars:
   - warLocalPath: "{{ warNameFilePath }}"
   - warRemotePath: /opt/apache-tomcat-9.0.16/webapps
 
   tasks:
-  - name: deleting the old SpringApp.war file
-    file: path={{ warRemotePath }}/SpringApp.war state=absent
+  - name: deleting the old {{ service_name }}.war file
+    file: path={{ warRemotePath }}/{{ service_name }}.war state=absent
 
-  - name: Clear Old file from the Spring APP folder before deployment
-    file: path={{ warRemotePath }}/SprintApp state=absent 
+  - name: Clear Old file from the {{ service_name }} folder before deployment
+    file: path={{ warRemotePath }}/{{ service_name }} state=absent 
 
   - name: Download WAR to server
-    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/SpringApp.war 
+    synchronize: src={{ warLocalPath }} dest={{ warRemotePath }}/{{ service_name }}.war 
     notify:
         - Restart tomcat
 
